@@ -1,6 +1,7 @@
 const React = require('react'),
       PropTypes = React.PropTypes,
-      ConfirmBattle = require('../components/ConfirmBattle')
+      ConfirmBattle = require('../components/ConfirmBattle'),
+      githubHelpers = require('../utils/githubHelpers')
 
 const ConfirmBattleComponent = React.createClass({
   contextTypes: {
@@ -10,16 +11,26 @@ const ConfirmBattleComponent = React.createClass({
   getInitialState () {
     return {
       isLoading: true,
-      playerInfo: []
+      playersInfo: []
     }
   },
   componentDidMount () {
     // Grab usernames and fetch infor from GitHub API
     const query = this.props.location.query
 
+    githubHelpers.getPlayersInfo([query.playerOne, query.playerTwo])
+    .then( (githubData) => {
+      this.setState({
+        isLoading: false,
+        playersInfo: githubData
+      })
+    })
+
+
     // Now Ajax request and change state
   },
   render: function() {
+    console.log(this.state)
     return (
       <ConfirmBattle
         isLoading={this.state.isLoading}
