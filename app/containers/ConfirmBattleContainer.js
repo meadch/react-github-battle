@@ -25,16 +25,22 @@ const ConfirmBattleComponent = React.createClass({
         playersInfo: githubData
       })
     })
-
-
-    // Now Ajax request and change state
+  },
+  handleStartBattle () {
+    console.log(`CONTEXT: ${this.context}`)
+    this.context.router.push({
+      pathname: '/results',
+      state: {
+        playersInfo: this.state.playersInfo
+      }
+    })
   },
   render: function() {
-    console.log(this.state)
     return (
       <ConfirmBattle
         isLoading={this.state.isLoading}
-        playersInfo={this.state.playersInfo} />
+        playersInfo={this.state.playersInfo}
+        onStartBattle={this.handleStartBattle} />
     );
   }
 });
