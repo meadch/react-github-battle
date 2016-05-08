@@ -1,9 +1,9 @@
 const React = require('react'),
-      transparentBg = require('../styles/index').transparentBg,
-      PropTypes = React.PropTypes
+      PropTypes = React.PropTypes,
+      Jumbotron = require('./JumbotronWrapper')
 
 const Prompt = (props) => (
-      <div className="jumbotron col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
+      <Jumbotron>
         <h1>{props.header}</h1>
         <div className='col-sm-12'>
           <form onSubmit={props.submitUser}>
@@ -24,7 +24,7 @@ const Prompt = (props) => (
             </div>
           </form>
         </div>
-      </div>
+      </Jumbotron>
     )
 
 Prompt.propTypes = {

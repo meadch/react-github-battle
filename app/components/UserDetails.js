@@ -4,7 +4,6 @@ const React = require('react'),
 
 // Great way to throw objects on screen
 const puke = (obj) => {
-  console.log(obj)
   return <pre>{JSON.stringify(obj, null, ' ')}</pre>
 }
 

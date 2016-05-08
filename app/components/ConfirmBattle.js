@@ -2,7 +2,8 @@ const React = require('react'),
       styles = require('../styles'),
       Link = require('react-router').Link,
       PlayerDetailsWrapper = require('./UserDetailsWrapper'),
-      UserDetails = require('./UserDetails')
+      UserDetails = require('./UserDetails'),
+      Jumbotron = require('./JumbotronWrapper')
 
 const ConfirmBattle = (props) => {
 
@@ -15,7 +16,7 @@ const ConfirmBattle = (props) => {
   return (
     props.isLoading === true ?
     <p>LOADING!</p> :
-      <div className="jumbotron col-sm-12 text-center"
+      <Jumbotron
         style={styles.transparentBg}>
         <h1>Confirm Players</h1>
         <div className='col-sm-8 col-sm-offset-2'>
@@ -31,7 +32,7 @@ const ConfirmBattle = (props) => {
             </Link>
           </div>
         </div>
-      </div>
+      </Jumbotron>
   )
 }
 

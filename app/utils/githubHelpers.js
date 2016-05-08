@@ -35,7 +35,6 @@ const getPlayerData = (player) => {
 }
 
 const calculateTotalScores = (players) => {
-  console.log(players)
   return players.map( (player) => {
     return player.followers * 3 + player.totalStars
   })
