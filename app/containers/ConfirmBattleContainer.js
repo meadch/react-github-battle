@@ -27,7 +27,6 @@ const ConfirmBattleComponent = React.createClass({
     })
   },
   handleStartBattle () {
-    console.log(`CONTEXT: ${this.context}`)
     this.context.router.push({
       pathname: '/results',
       state: {
