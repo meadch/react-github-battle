@@ -3,9 +3,11 @@ const React = require('react'),
       Link = require('react-router').Link,
       PlayerDetailsWrapper = require('./UserDetailsWrapper'),
       UserDetails = require('./UserDetails'),
-      Jumbotron = require('./JumbotronWrapper')
+      Jumbotron = require('./JumbotronWrapper'),
+      Loading = require('./Loading')
 
 const ConfirmBattle = (props) => {
+  
   playerDetails = props.playersInfo.map((playerInfo, idx) => (
     <UserDetailsWrapper key={idx} header={`Player ${idx+1}`} >
       <UserDetails key={idx} info={playerInfo} />
@@ -15,7 +17,7 @@ const ConfirmBattle = (props) => {
   return (
     props.isLoading === true ?
       <Jumbotron>
-        <h1>Loading...</h1>
+        <Loading />
       </Jumbotron>:
       <Jumbotron
         style={styles.transparentBg}>

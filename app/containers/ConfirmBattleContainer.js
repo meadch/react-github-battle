@@ -20,9 +20,16 @@ const ConfirmBattleComponent = React.createClass({
 
     githubHelpers.getPlayersInfo([query.playerOne, query.playerTwo])
     .then( (githubData) => {
+      if(!githubData) { throw new Error("No GitHub data...") }
       this.setState({
         isLoading: false,
         playersInfo: githubData
+      })
+    })
+    .catch((err) => {
+      this.setState({
+        isLoading: false,
+        playersInfo: []
       })
     })
   },
@@ -34,7 +41,7 @@ const ConfirmBattleComponent = React.createClass({
       }
     })
   },
-  render: function() {
+  render () {
     return (
       <ConfirmBattle
         isLoading={this.state.isLoading}
