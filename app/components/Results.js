@@ -4,7 +4,8 @@ const React = require('react'),
       UserDetailsWrapper = require('../components/UserDetailsWrapper'),
       UserDetails = require('../components/UserDetails'),
       Link = require('react-router').Link,
-      Jumbotron = require('./JumbotronWrapper')
+      Jumbotron = require('./JumbotronWrapper'),
+      Loading = require('./Loading')
 
 // Example of private functional stateless component
 const StartOver = () => (
@@ -17,7 +18,7 @@ const StartOver = () => (
 
 const Results = (props) => {
   if (props.isLoading === true) {
-    return <Jumbotron><p>Loading...</p></Jumbotron>
+    return <Jumbotron><Loading text="Just a sec"/></Jumbotron>
   }
   // Check first for tie
   if (props.scores[0] === props.scores[1]){

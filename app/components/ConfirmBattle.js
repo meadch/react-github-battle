@@ -7,7 +7,7 @@ const React = require('react'),
       Loading = require('./Loading')
 
 const ConfirmBattle = (props) => {
-  
+
   playerDetails = props.playersInfo.map((playerInfo, idx) => (
     <UserDetailsWrapper key={idx} header={`Player ${idx+1}`} >
       <UserDetails key={idx} info={playerInfo} />
@@ -17,7 +17,7 @@ const ConfirmBattle = (props) => {
   return (
     props.isLoading === true ?
       <Jumbotron>
-        <Loading />
+        <Loading text="Waiting"/>
       </Jumbotron>:
       <Jumbotron
         style={styles.transparentBg}>
