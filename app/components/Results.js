@@ -6,6 +6,7 @@ const React = require('react'),
       Link = require('react-router').Link,
       Jumbotron = require('./JumbotronWrapper')
 
+// Example of private functional stateless component
 const StartOver = () => (
   <div className="col-sm-12">
     <Link to="/playerOne">
@@ -47,8 +48,6 @@ const Results = (props) => {
     </Jumbotron>
   )
 }
-
-
 
 Results.PropTypes = {
   isLoading : PropTypes.bool.isRequired,

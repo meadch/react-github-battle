@@ -5,7 +5,7 @@ const React = require('react'),
 const Prompt = (props) => (
       <Jumbotron>
         <h1>{props.header}</h1>
-        <div className='col-sm-12'>
+        <div className='col-sm-4 col-sm-offset-4'>
           <form onSubmit={props.submitUser}>
             <div className="form-group">
               <input

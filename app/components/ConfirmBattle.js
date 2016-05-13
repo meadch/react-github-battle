@@ -6,7 +6,6 @@ const React = require('react'),
       Jumbotron = require('./JumbotronWrapper')
 
 const ConfirmBattle = (props) => {
-
   playerDetails = props.playersInfo.map((playerInfo, idx) => (
     <UserDetailsWrapper key={idx} header={`Player ${idx+1}`} >
       <UserDetails key={idx} info={playerInfo} />
@@ -15,7 +14,9 @@ const ConfirmBattle = (props) => {
   // Check to see isLoading status
   return (
     props.isLoading === true ?
-    <p>LOADING!</p> :
+      <Jumbotron>
+        <h1>Loading...</h1>
+      </Jumbotron>:
       <Jumbotron
         style={styles.transparentBg}>
         <h1>Confirm Players</h1>
@@ -39,7 +40,7 @@ const ConfirmBattle = (props) => {
 ConfirmBattle.propTypes = {
   isLoading: React.PropTypes.bool.isRequired,
   playersInfo: React.PropTypes.array.isRequired,
-  onStartBattle: React.PropTypes.func.isRequired,
+  onStartBattle: React.PropTypes.func.isRequired
 }
 
 module.exports = ConfirmBattle
