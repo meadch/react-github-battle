@@ -7,15 +7,17 @@ import Jumbotron from './JumbotronWrapper'
 import Loading from './Loading'
 
 
-const ConfirmBattle = (props) => {
-  const playerDetails = props.playersInfo.map((playerInfo, idx) => (
-    <UserDetailsWrapper key={idx} header={`Player ${idx+1}`} >
-      <UserDetails key={idx} info={playerInfo} />
-    </UserDetailsWrapper>
-  ))
+const ConfirmBattle = ({isLoading, playersInfo, onStartBattle}) => {
+  const playerDetails = playersInfo.map((playerInfo, idx) => {
+    return (
+      <UserDetailsWrapper key={idx} header={`Player ${idx+1}`} >
+        <UserDetails key={idx} info={playerInfo} />
+      </UserDetailsWrapper>
+    )
+  })
   // Check to see isLoading status
   return (
-    props.isLoading === true ?
+    isLoading === true ?
       <Jumbotron>
         <Loading text="Waiting"/>
       </Jumbotron>:
@@ -27,7 +29,7 @@ const ConfirmBattle = (props) => {
         </div>
         <div className='col-sm-8 col-sm-offset-2'>
           <div className='col-sm-12'>
-            <button style={space} type='button' className='btn btn-lg btn-success' onClick={props.onStartBattle}>Initiate Battle!</button>
+            <button style={space} type='button' className='btn btn-lg btn-success' onClick={onStartBattle}>Initiate Battle!</button>
           </div>
           <div className='col-sm-12'>
             <Link to='/playerOne'>

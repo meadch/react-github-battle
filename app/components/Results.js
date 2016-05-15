@@ -14,33 +14,33 @@ const StartOver = () => (
   </div>
 )
 
-const Results = (props) => {
-  if (props.isLoading === true) {
+const Results = ({isLoading, scores, playersInfo}) => {
+  if (isLoading === true) {
     return <Jumbotron><Loading text="Just a sec"/></Jumbotron>
   }
   // Check first for tie
-  if (props.scores[0] === props.scores[1]){
+  if (scores[0] === scores[1]){
     return (
       <Jumbotron>
-        <h1>It's a tie at {props.scores[0]}.</h1>
+        <h1>It's a tie at {scores[0]}.</h1>
         <StartOver/>
       </Jumbotron>
     )
   }
-  const winnerIdx = (props.scores[0] > props.scores[1]) ? 0 : 1,
+  const winnerIdx = (scores[0] > scores[1]) ? 0 : 1,
         loserIdx = (winnerIdx === 0) ? 1 : 0
 
   return (
-    props.isLoading === true ?
+    isLoading === true ?
     <p>Loading...</p>:
     <Jumbotron>
       <h1>Results</h1>
       <div className="col-sm-8 col-sm-offset-2">
         <UserDetailsWrapper header="Winner">
-          <UserDetails score={props.scores[winnerIdx]} info={props.playersInfo[winnerIdx]}/>
+          <UserDetails score={scores[winnerIdx]} info={playersInfo[winnerIdx]}/>
         </UserDetailsWrapper>
         <UserDetailsWrapper header="Loser">
-          <UserDetails score={props.scores[loserIdx]} info={props.playersInfo[loserIdx]}/>
+          <UserDetails score={scores[loserIdx]} info={playersInfo[loserIdx]}/>
         </UserDetailsWrapper>
       </div>
       <StartOver/>
