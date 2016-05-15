@@ -1,6 +1,5 @@
-const React = require('react'),
-      PropTypes = React.PropTypes,
-      Jumbotron = require('./JumbotronWrapper')
+import React, {PropTypes} from 'react'
+import Jumbotron from './JumbotronWrapper'
 
 const Prompt = (props) => (
       <Jumbotron>
@@ -34,4 +33,4 @@ Prompt.propTypes = {
   username: PropTypes.string.isRequired,
 }
 
-module.exports = Prompt
+export default Prompt

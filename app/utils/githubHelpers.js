@@ -1,4 +1,4 @@
-const axios = require('axios')
+import axios from 'axios'
 
 // If we get rate limited on GitHub API:
 const id = "YOUR_CLIENt_ID",
@@ -41,29 +41,27 @@ const calculateTotalScores = (players) => {
 }
 
 
-const helpers = {
-  getPlayersInfo: function(players){
-    // Build array of promises
-    // Wait until each promise is resolved
-    // retun promise to calling component
-    return axios.all(players.map((playerName) => {
-      return getUserInfo(playerName)
-    }))
-    .then( (info) => {
-      // Iterate through info and replace with just the data piece of object
-      // before it goes back to component
-      return info.map( (userData) => {
-        return userData.data
-      })
+
+export const getPlayersInfo = (players) => {
+  // Build array of promises
+  // Wait until each promise is resolved
+  // retun promise to calling component
+  return axios.all(players.map((playerName) => {
+    return getUserInfo(playerName)
+  }))
+  .then( (info) => {
+    // Iterate through info and replace with just the data piece of object
+    // before it goes back to component
+    return info.map( (userData) => {
+      return userData.data
     })
-    .catch(handleError)
-  },
-  battle (playersInfo){
-    // getPlayerData returns promise; both calls to axios.all and when finished pass the resulting data (an array of objects that look like {followers: x, totalStars: y}) to calculateTotalScores, which maps over the inputs and places the objects with final scores
-    return axios.all([getPlayerData(playersInfo[0]), getPlayerData(playersInfo[1])])
-    .then( calculateTotalScores )
-    .catch ( (err) => { console.log("There was an error in the battle process", err)})
-  }
+  })
+  .catch(handleError)
 }
 
-module.exports = helpers
+export const battle = (playersInfo) => {
+  // getPlayerData returns promise; both calls to axios.all and when finished pass the resulting data (an array of objects that look like {followers: x, totalStars: y}) to calculateTotalScores, which maps over the inputs and places the objects with final scores
+  return axios.all([getPlayerData(playersInfo[0]), getPlayerData(playersInfo[1])])
+  .then( calculateTotalScores )
+  .catch ( (err) => { console.log("There was an error in the battle process", err)})
+}

@@ -1,4 +1,4 @@
-const React = require('react')
+import React, { PropTypes } from 'react'
 
 const Loading = React.createClass({
   propTypes: {
@@ -19,11 +19,11 @@ const Loading = React.createClass({
     }
   },
   componentDidMount () {
-    const endPoint = this.originalText + '...'
+    const endPoint = this.state.text + '...'
     this.interval = setInterval( () => {
       if (this.state.text == endPoint) {
         this.setState({
-          text: "Loading"
+          text: this.originalText
         })
       } else {
         this.setState({
@@ -45,4 +45,4 @@ const Loading = React.createClass({
   }
 })
 
-module.exports = Loading
+export default Loading

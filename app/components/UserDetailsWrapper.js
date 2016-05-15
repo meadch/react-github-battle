@@ -1,10 +1,10 @@
-const React = require('react')
+import React from 'react'
 
-UserDetailsWrapper = (props) => (
+const UserDetailsWrapper = (props) => (
   <div className='col-sm-6'>
     <p className='lead'>{props.header}</p>
     {props.children}
   </div>
 )
 
-module.exports = UserDetailsWrapper
+export default UserDetailsWrapper

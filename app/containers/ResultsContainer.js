@@ -1,6 +1,6 @@
-const React = require('react'),
-      Results = require('../components/Results'),
-      githubHelpers = require('../utils/githubHelpers')
+import React from 'react'
+import Results from '../components/Results'
+import { battle } from '../utils/githubHelpers'
 
 const ResultsContainer = React.createClass({
   getInitialState () {
@@ -10,8 +10,7 @@ const ResultsContainer = React.createClass({
     }
   },
   componentDidMount () {
-    // When component mounts, have battle take place
-    githubHelpers.battle(this.props.location.state.playersInfo)
+    battle(this.props.location.state.playersInfo)
     .then( (results) => {
       this.setState({
         scores: results,
@@ -27,4 +26,4 @@ const ResultsContainer = React.createClass({
   }
 })
 
-module.exports = ResultsContainer
+export default ResultsContainer

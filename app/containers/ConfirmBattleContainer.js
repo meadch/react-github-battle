@@ -1,11 +1,10 @@
-const React = require('react'),
-      PropTypes = React.PropTypes,
-      ConfirmBattle = require('../components/ConfirmBattle'),
-      githubHelpers = require('../utils/githubHelpers')
+import React, {PropTypes} from 'react'
+import ConfirmBattle from '../components/ConfirmBattle'
+import {getPlayersInfo} from '../utils/githubHelpers'
 
 const ConfirmBattleComponent = React.createClass({
   contextTypes: {
-    router: React.PropTypes.object.isRequired
+    router: PropTypes.object.isRequired
   },
   // Components needs to know whether loading or not
   getInitialState () {
@@ -16,17 +15,18 @@ const ConfirmBattleComponent = React.createClass({
   },
   componentDidMount () {
     // Grab usernames and fetch infor from GitHub API
-    const query = this.props.location.query
+    const { query } = this.props.location
 
-    githubHelpers.getPlayersInfo([query.playerOne, query.playerTwo])
-    .then( (githubData) => {
+    getPlayersInfo([query.playerOne, query.playerTwo])
+    .then( function (githubData) {
       if(!githubData) { throw new Error("No GitHub data...") }
       this.setState({
-        isLoading: false,
-        playersInfo: githubData
+        playersInfo: githubData,
+        isLoading: false
       })
-    })
+    }.bind(this) )
     .catch((err) => {
+      console.log("ERROR:", err)
       this.setState({
         isLoading: false,
         playersInfo: []
@@ -51,4 +51,4 @@ const ConfirmBattleComponent = React.createClass({
   }
 });
 
-module.exports = ConfirmBattleComponent;
+export default ConfirmBattleComponent

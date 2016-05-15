@@ -1,11 +1,9 @@
-const React = require('react'),
-      PropTypes = React.PropTypes,
-      styles = require('../styles'),
-      UserDetailsWrapper = require('../components/UserDetailsWrapper'),
-      UserDetails = require('../components/UserDetails'),
-      Link = require('react-router').Link,
-      Jumbotron = require('./JumbotronWrapper'),
-      Loading = require('./Loading')
+import React, { PropTypes } from 'react'
+import UserDetailsWrapper from './UserDetailsWrapper'
+import UserDetails from './UserDetails'
+import {Link} from 'react-router'
+import Jumbotron from './JumbotronWrapper'
+import Loading from './Loading'
 
 // Example of private functional stateless component
 const StartOver = () => (
@@ -56,4 +54,4 @@ Results.PropTypes = {
   scores : PropTypes.array.isRequired
 }
 
-module.exports = Results
+export default Results
