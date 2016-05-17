@@ -13,25 +13,26 @@ const ConfirmBattleComponent = React.createClass({
       playersInfo: []
     }
   },
-  componentDidMount () {
+  async componentDidMount () {
     // Grab usernames and fetch infor from GitHub API
     const { query } = this.props.location
 
-    getPlayersInfo([query.playerOne, query.playerTwo])
-    .then( function (githubData) {
+    try {
+      const githubData = await getPlayersInfo([query.playerOne, query.playerTwo])
+
       if(!githubData) { throw new Error("No GitHub data...") }
+
       this.setState({
         playersInfo: githubData,
         isLoading: false
       })
-    }.bind(this) )
-    .catch((err) => {
+    } catch (err) {
       console.log("ERROR:", err)
       this.setState({
         isLoading: false,
         playersInfo: []
       })
-    })
+    }
   },
   handleStartBattle () {
     this.context.router.push({

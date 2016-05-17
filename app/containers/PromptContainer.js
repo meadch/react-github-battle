@@ -20,13 +20,14 @@ const PromptContainer = React.createClass({
     const { username } = this.state
     this.setState({username: ''})
 
+    const {playerOne} = this.props.routeParams
 
-    if(this.props.routeParams.playerOne){
+    if(playerOne){
       // That means we're on player2 route, ready to move forward to battle
       this.context.router.push({
           pathname: '/battle',
           query: {
-            playerOne: this.props.routeParams.playerOne,
+            playerOne,
             playerTwo: username
           }
       })

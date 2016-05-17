@@ -9,14 +9,16 @@ const ResultsContainer = React.createClass({
       scores: []
     }
   },
-  componentDidMount () {
-    battle(this.props.location.state.playersInfo)
-    .then( (results) => {
+  async componentDidMount () {
+    try {
+      const results = await battle(this.props.location.state.playersInfo)
       this.setState({
         scores: results,
         isLoading: false
       })
-    })
+    } catch (err){
+      console.log('Error in ResultsContainer')
+    }
   },
   render () {
     return <Results
