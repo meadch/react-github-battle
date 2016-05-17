@@ -1,20 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Prompt from '../components/Prompt'
 
-const PromptContainer = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-  getInitialState () {
-    return {
+class PromptContainer extends Component {
+  constructor () {
+    super()
+    this.state = {
       username: ''
     }
-  },
+  }
   updateUserName (e) {
     this.setState({
       username: e.target.value
     })
-  },
+  }
   submitUser (e) {
     e.preventDefault()
     const { username } = this.state
@@ -34,18 +32,22 @@ const PromptContainer = React.createClass({
     } else {
       this.context.router.push(`/playerTwo/${username}`)
     }
-  },
+  }
   render () {
     return (
       <Prompt
         header={this.props.route.header}
         username={this.state.username}
-        submitUser={this.submitUser}
-        updateUserName={this.updateUserName}
+        submitUser={(e) => this.submitUser(e)}
+        updateUserName={(e) => this.updateUserName(e) }
       />
     )
   }
-})
+}
+
+PromptContainer.contextTypes = {
+  router: React.PropTypes.object.isRequired
+}
 
 
 export default PromptContainer
